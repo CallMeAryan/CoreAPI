@@ -1,0 +1,4 @@
+name: CoreAPI
+version: '1.0-SNAPSHOT'
+main: net.liven.coreAPI.CoreAPI
+api-version: '1.20'
