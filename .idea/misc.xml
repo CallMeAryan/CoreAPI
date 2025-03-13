@@ -10,6 +10,7 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/CoreAPIBungee/pom.xml" />
+        <option value="$PROJECT_DIR$/CoreAPICommon/pom.xml" />
         <option value="$PROJECT_DIR$/CoreAPISpigot/pom.xml" />
       </set>
     </option>
