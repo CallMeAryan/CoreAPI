@@ -21,7 +21,7 @@ public class ChatUtils {
            final Pattern hexPattern = Pattern.compile("&#" + "([A-Fa-f0-9]{6})");
 
            Matcher matcher = hexPattern.matcher(input);
-           StringBuffer buffer = new StringBuffer(input.length() + 4 * 8);
+           StringBuilder buffer = new StringBuilder(input.length() + 4 * 8);
 
            while (matcher.find()) {
                String group = matcher.group(1);

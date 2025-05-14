@@ -4,8 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import net.liven.coreapi.placeholder.PlaceholderManager;
 import net.liven.coreapi.server.spigot.SpigotPlayer;
-import net.liven.coreapi.utils.Base64Utils;
 import net.liven.coreapi.utils.CoreUtils;
+import net.liven.coreapi.utils.PersistenceUtils;
 import org.bukkit.entity.Player;
 
 import java.io.IOException;
@@ -40,7 +40,7 @@ public class CommandAction implements ExecutableAction {
 
     private List<String> unzipCommand(String datum) {
         try {
-            return Base64Utils.decodeList(datum);
+            return PersistenceUtils.decodeList(datum);
         } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -48,7 +48,7 @@ public class CommandAction implements ExecutableAction {
 
     public String zipCommand() {
         try {
-            return Base64Utils.encodeList(command);
+            return PersistenceUtils.encodeList(command);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
