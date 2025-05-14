@@ -3,6 +3,7 @@ package net.liven.coreapi.server.spigot;
 import net.liven.coreapi.CoreAPIManager;
 import net.liven.coreapi.command.execute.CommandWrapper;
 import net.liven.coreapi.server.CommandSenderType;
+import net.liven.coreapi.server.WrappedLogger;
 import net.liven.coreapi.server.wrappers.WrappedPlayer;
 import net.liven.coreapi.server.wrappers.WrappedServer;
 import org.bukkit.Bukkit;
@@ -13,6 +14,13 @@ import java.io.File;
 import java.util.UUID;
 
 public class SpigotWrappedServer implements WrappedServer {
+    private final SpigotLogger logger;
+
+    public SpigotWrappedServer() {
+        this.logger = new SpigotLogger();
+    }
+
+
     @Override
     public WrappedPlayer getPlayer(String name) {
         Player p = Bukkit.getPlayer(name);
@@ -54,6 +62,11 @@ public class SpigotWrappedServer implements WrappedServer {
     @Override
     public File getDataFolder() {
         return ((Plugin) getPlugin()).getDataFolder();
+    }
+
+    @Override
+    public WrappedLogger getLogger() {
+        return logger;
     }
 
 

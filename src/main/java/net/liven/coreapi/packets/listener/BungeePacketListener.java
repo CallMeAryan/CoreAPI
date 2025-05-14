@@ -1,18 +1,18 @@
 package net.liven.coreapi.packets.listener;
 
 import net.liven.coreapi.CoreAPIManager;
-import net.liven.coreapi.packets.incomming.IncomingPacketManager;
+import net.liven.coreapi.packets.PacketManager;
 import net.md_5.bungee.api.event.PluginMessageEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.event.EventHandler;
 
 public class BungeePacketListener implements PacketListener, Listener {
-    private final IncomingPacketManager manager;
+    private final PacketManager manager;
 
 
-    public BungeePacketListener(IncomingPacketManager incomingPacketManager) {
-        this.manager = incomingPacketManager;
+    public BungeePacketListener(PacketManager packetManager) {
+        this.manager = packetManager;
     }
 
 

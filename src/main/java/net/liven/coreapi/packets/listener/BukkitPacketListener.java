@@ -1,17 +1,17 @@
 package net.liven.coreapi.packets.listener;
 
 import net.liven.coreapi.CoreAPIManager;
-import net.liven.coreapi.packets.incomming.IncomingPacketManager;
+import net.liven.coreapi.packets.PacketManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.messaging.PluginMessageListener;
 
 public class BukkitPacketListener implements PacketListener, PluginMessageListener {
-    private final IncomingPacketManager incomingPacketManager;
+    private final PacketManager packetManager;
 
-    public BukkitPacketListener(IncomingPacketManager incomingPacketManager) {
-        this.incomingPacketManager = incomingPacketManager;
+    public BukkitPacketListener(PacketManager packetManager) {
+        this.packetManager = packetManager;
     }
 
     @Override
@@ -24,8 +24,8 @@ public class BukkitPacketListener implements PacketListener, PluginMessageListen
 
     @Override
     public void onPluginMessageReceived(String s, Player player, byte[] bytes) {
-        System.out.println(s);
-        System.out.println(player);
-        System.out.println("Received packet");
+        if(s.equalsIgnoreCase("coreapi:bungee")) {
+
+        }
     }
 }

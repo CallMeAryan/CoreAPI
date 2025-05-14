@@ -3,6 +3,7 @@ package net.liven.coreapi.server.bungee;
 import net.liven.coreapi.CoreAPIManager;
 import net.liven.coreapi.command.execute.CommandWrapper;
 import net.liven.coreapi.server.CommandSenderType;
+import net.liven.coreapi.server.WrappedLogger;
 import net.liven.coreapi.server.wrappers.WrappedPlayer;
 import net.liven.coreapi.server.wrappers.WrappedServer;
 import net.md_5.bungee.api.ProxyServer;
@@ -54,5 +55,10 @@ public class BungeeWrappedServer implements WrappedServer {
     @Override
     public File getDataFolder() {
         return ((Plugin) CoreAPIManager.getInstance().getPlugin()).getDataFolder();
+    }
+
+    @Override
+    public WrappedLogger getLogger() {
+        return null;
     }
 }
