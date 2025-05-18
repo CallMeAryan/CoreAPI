@@ -2,6 +2,7 @@ package net.liven.coreapi.database.mongo.test;
 
 import net.liven.coreapi.database.mongo.MongoDatabaseManager;
 import net.liven.coreapi.database.mongo.data.types.SerializableHashMap;
+import net.liven.coreapi.database.mongo.data.types.SerializableList;
 
 import java.util.List;
 import java.util.UUID;
@@ -11,32 +12,20 @@ public class test {
         MongoDatabaseManager.initialize("mongodb+srv://aryan:testpass001@cluster0.ed1agmf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
                 "testdb");
         Profile profile = Profile.loadProfile(Profile.Fields.PLAYER_NAME, "aryan");
+      //  profile.runDataTypeTest();
 
+        SerializableHashMap<SerializableList<String>, String> keyMap = profile.getKeyListMap();
+        SerializableHashMap<SerializableList<String>, SerializableList<String>> doubleList = profile.getDoubleListMap();
+        SerializableHashMap<String, SerializableList<String>> valueMap = profile.getValueListMap();
+        System.out.println(valueMap);
 
-        System.out.println(profile.getName());
-
-        SerializableHashMap<Profile.Toggles, UUID> rankList = new SerializableHashMap<>();
-        rankList.put(Profile.Toggles.ON, UUID.randomUUID());
-        rankList.put(Profile.Toggles.OFF, UUID.randomUUID());
-
-
-        System.out.println(profile.getRankedPlayers());
-
-        profile.setRankedPlayers(null);
-
-        System.out.println(profile.getRankedPlayers());
-
-
-      //  System.out.println(profile.getSettings());
-
-      //  profile.toggle(Profile.Toggles.ON);
-
-        // MongoDatabaseManager.saveDocument(profile.getCollectionName(), profile.getDocument());
-
-
-
-      //  System.out.println(profile.getSettings());
-      //  System.out.println(profile.getName());
+        for (String s : valueMap.keys()){
+            SerializableList<String> list = valueMap.get(s);
+            System.out.println(s);
+            for (String s2 : list){
+                System.out.println(s2);
+            }
+        }
 
 
     }

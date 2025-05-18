@@ -48,32 +48,39 @@ public class SerializableHashMap<K, V> implements Serializable, MongoSerializabl
         Document doc = new Document();
 
         if (!internalMap.isEmpty()) {
+            List<Document> entries = new ArrayList<>();
+
             for (Map.Entry<K, V> entry : internalMap.entrySet()) {
-                String keyStr = entry.getKey().toString();
                 Document entryDoc = new Document();
 
-                if (entry.getKey() instanceof SerializableList) {
-                    entryDoc.put("__key", ((SerializableList<?>) entry.getKey()).toDocument());
-                } else if (entry.getKey() instanceof SerializableHashMap) {
-                    entryDoc.put("__key", ((SerializableHashMap<?, ?>) entry.getKey()).toDocument());
+                // Key handling
+                Object keyObj = entry.getKey();
+                if (keyObj instanceof SerializableList<?> list) {
+                    entryDoc.put("__key", list.toDocument());
+                } else if (keyObj instanceof SerializableHashMap<?, ?> map) {
+                    entryDoc.put("__key", map.toDocument());
                 } else {
-                    entryDoc.put("__key", entry.getKey());
+                    entryDoc.put("__key", keyObj);
                 }
 
-                if (entry.getValue() instanceof SerializableList<?> list) {
+                // Value handling
+                Object valueObj = entry.getValue();
+                if (valueObj instanceof SerializableList<?> list) {
                     entryDoc.put("__value", list.toDocument());
-                } else if (entry.getValue() instanceof SerializableHashMap<?, ?> map) {
+                } else if (valueObj instanceof SerializableHashMap<?, ?> map) {
                     entryDoc.put("__value", map.toDocument());
                 } else {
-                    entryDoc.put("__value", entry.getValue());
+                    entryDoc.put("__value", valueObj);
                 }
 
-                doc.put(keyStr, entryDoc);
+                entries.add(entryDoc);
             }
-        }
 
+            doc.put("entries", entries);
+        }
         return doc;
     }
+
 
 
     @Override
@@ -88,5 +95,9 @@ public class SerializableHashMap<K, V> implements Serializable, MongoSerializabl
                 "size=" + internalMap.size() +
                 ", elements=" + internalMap +
                 '}';
+    }
+
+    public Set<K> keys() {
+       return internalMap.keySet();
     }
 }
