@@ -1,11 +1,12 @@
 package net.liven.coreapi.database.mongo.data.types;
 
+import lombok.Getter;
 import net.liven.coreapi.database.mongo.data.MongoSerializable;
 import org.bson.Document;
 
 import java.io.Serializable;
 import java.util.*;
-
+@Getter
 public class SerializableHashMap<K, V> implements Serializable, MongoSerializable {
     private final HashMap<K, V> internalMap = new HashMap<>();
     private boolean needed = false;

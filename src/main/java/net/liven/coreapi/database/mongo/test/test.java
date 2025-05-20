@@ -9,10 +9,16 @@ import java.util.UUID;
 
 public class test {
     public static void main(String[] args) {
-        MongoDatabaseManager.initialize("mongodb+srv://aryan:testpass001@cluster0.ed1agmf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
-                "testdb");
-        Profile profile = Profile.loadProfile(Profile.Fields.PLAYER_NAME, "aryan");
+            MongoDatabaseManager.initialize("mongodb+srv://aryan:testpass001@cluster0.ed1agmf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+                    "testdb");
+        Profile profile = Profile.loadProfile(Profile.Fields.PLAYER_NAME, "aryaasdn");
       //  profile.runDataTypeTest();
+
+
+        if (profile == null) {
+            System.out.println("profile is null");
+            return;
+        }
 
         SerializableHashMap<SerializableList<String>, String> keyMap = profile.getKeyListMap();
         SerializableHashMap<SerializableList<String>, SerializableList<String>> doubleList = profile.getDoubleListMap();

@@ -23,7 +23,11 @@ public class Profile extends MongoDataObject {
     }
 
     public static Profile loadProfile(MongoKey key, Object value) {
-        return new Profile(MongoDataObject.load(collectionName, key, value));
+        Document profileDoc  = MongoDataObject.load(collectionName, key, value);
+        if(profileDoc == null) {
+            return null;
+        }
+        return new Profile(profileDoc);
     }
 
     public static Profile createNewProfile(String name, UUID id){

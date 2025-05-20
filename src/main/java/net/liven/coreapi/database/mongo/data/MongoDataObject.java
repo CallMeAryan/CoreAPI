@@ -31,13 +31,7 @@ public abstract class MongoDataObject {
 
         Document query = new Document(field, value);
 
-        Document found = collection.find(query).first();
-
-        if (found == null) {
-            throw new IllegalStateException("Document not found for " + field + " = " + value + " in table " + collectionName);
-        }
-
-        return found;
+        return collection.find(query).first();
     }
 
 

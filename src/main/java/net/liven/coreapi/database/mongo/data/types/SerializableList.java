@@ -5,7 +5,6 @@ import net.liven.coreapi.database.mongo.data.MongoKey;
 import net.liven.coreapi.database.mongo.data.MongoSerializable;
 import org.bson.Document;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -16,6 +15,10 @@ public class SerializableList<K> extends ArrayList<K> implements MongoSerializab
 
     public SerializableList() {
         super();
+    }
+
+    public SerializableList(List<K> list) {
+        super(list);
     }
 
 
